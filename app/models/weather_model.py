@@ -1,9 +1,15 @@
 # In app/models/weather_model.py
+from datetime import datetime
+from typing import Optional
+
+from pydantic import BaseModel
 from sqlalchemy import Column, Integer, String, Float, DateTime
+
 from database import Base
 
+
 class WeatherData(Base):
-    __tablename__ = 'weather_data'
+    __tablename__ = 'historical_weather_data'
 
     dt = Column(Integer, primary_key=True)
     dt_iso = Column(String)
@@ -33,3 +39,37 @@ class WeatherData(Base):
     weather_main = Column(String)
     weather_description = Column(String)
     weather_icon = Column(String)
+
+
+class WeatherDataSchema(BaseModel):
+    dt: int
+    dt_iso: str
+    timezone: int
+    city_name: str
+    lat: float
+    lon: float
+    temp: float
+    visibility: Optional[int] = None
+    dew_point: float
+    feels_like: float
+    temp_min: float
+    temp_max: float
+    pressure: int
+    sea_level: Optional[int] = None
+    grnd_level: Optional[int] = None
+    humidity: int
+    wind_speed: float
+    wind_deg: int
+    wind_gust: Optional[float] = None
+    rain_1h: Optional[float] = None
+    rain_3h: Optional[float] = None
+    snow_1h: Optional[float] = None
+    snow_3h: Optional[float] = None
+    clouds_all: int
+    weather_id: int
+    weather_main: str
+    weather_description: str
+    weather_icon: str
+
+    class Config:
+        from_attributes = True
