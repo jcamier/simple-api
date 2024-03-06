@@ -21,4 +21,11 @@ The app is accessible at url is:
     http://localhost:8080/docs # to see the api docs
 
 
+
+## Resources:
+
+To browse SQLite database using a GUI tool
+
+    https://sqlitebrowser.org/
+
 ### This is only for demo purposes and should not be used in a production environment!
