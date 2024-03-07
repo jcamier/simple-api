@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy import func
 
 from models.weather_model import WeatherData, WeatherDataSchema, TemperatureForecastSchema
-from models.utils import kelvin_to_fahrenheit
+from models.utils import kelvin_to_fahrenheit, convert_dt_iso_str
 from database import get_db
 
 logger = logging.getLogger(__name__)
@@ -32,8 +32,7 @@ async def read_weather_data(
         start_point = datetime.now() - timedelta(days=days)
 
     logger.debug(f"starting date is {start_point}")
-    # Assuming dt_iso stores dates as strings in YYYY-MM-DD format
-    # Adjust your query to filter based on the calculated start_point
+
     weather_data = db.query(WeatherData).filter(
         WeatherData.dt_iso >= start_point.strftime('%Y-%m-%d')
     ).all()
@@ -88,3 +87,28 @@ async def read_temperature_forecast(date: Optional[str] = None, db: Session = De
         forecast_response = TemperatureForecastSchema()
 
     return forecast_response
+
+@router.get("/weather/icon/")
+async def get_weather_icon(date: str, db: Session = Depends(get_db)):
+    """
+    Fetches the URL for the weather icon for a given date.
+    """
+    try:
+        # Convert string date to datetime object
+        target_date = datetime.strptime(date, '%Y-%m-%d')
+    except ValueError:
+        raise HTTPException(status_code=400, detail="date must be in format YYYY-MM-DD")
+
+    # Format target_date back to string for comparison
+    target_date_str = convert_dt_iso_str(date)
+
+    weather_record = db.query(WeatherData).filter(
+        WeatherData.dt_iso.startswith(target_date_str)
+    ).first()
+
+    if not weather_record or not weather_record.weather_icon:
+        raise HTTPException(status_code=404, detail="Weather data not found for the specified date")
+
+    icon_url = f"https://openweathermap.org/img/w/{weather_record.weather_icon}.png"
+
+    return {"weather_icon": weather_record.weather_icon, "icon_url": icon_url}

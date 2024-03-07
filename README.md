@@ -2,7 +2,7 @@
 
 This is a simple FastAPI app that performs simple historical weather queries for Plano, TX
 
-    https://fastapi.tiangolo.com/
+    * It is from the time period February 29th, 1984 to February 29th, 2024
 
 We will see how we can use ChatGPT to create python unittests for the following endpoints:
 
@@ -18,14 +18,23 @@ The app is accessible at url is:
 
     http://localhost:8080/
 
-    http://localhost:8080/docs # to see the api docs
+The Swagger API docs are at:
 
+    http://localhost:8080/docs
 
 
 ## Resources:
 
+Learn more about FastAPI
+
+    https://fastapi.tiangolo.com/
+
 To browse SQLite database using a GUI tool
 
     https://sqlitebrowser.org/
+
+Very cool weather api
+
+    https://openweathermap.org/
 
 ### This is only for demo purposes and should not be used in a production environment!
