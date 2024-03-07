@@ -73,3 +73,7 @@ class WeatherDataSchema(BaseModel):
 
     class Config:
         from_attributes = True
+
+
+class TemperatureForecastSchema(BaseModel):
+    avg_temp: Optional[float] = None  # Allow None if there's no data
