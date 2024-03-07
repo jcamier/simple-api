@@ -6,7 +6,7 @@ This is a simple FastAPI app that performs simple historical weather queries for
 
 We will see how we can use ChatGPT to create python unittests for the following endpoints:
 
-To create the app, run:
+To create the app you will need docker, docker-compose and make then run:
 
     make build
 
