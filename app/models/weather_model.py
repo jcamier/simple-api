@@ -5,7 +5,7 @@ from typing import Optional
 from pydantic import BaseModel
 from sqlalchemy import Column, Integer, String, Float, DateTime
 
-from database import Base
+from app.database import Base
 
 
 class WeatherData(Base):

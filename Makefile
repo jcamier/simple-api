@@ -18,7 +18,7 @@ prune:
 up: prune down up-service
 
 test:
-	docker-compose run --rm -e TEST=1 app python manage.py test
+	docker-compose run --rm app pytest tests/
 
 lint:
 	docker-compose run --rm app sh -c "flake8"
