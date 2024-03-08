@@ -1,4 +1,4 @@
-# Working with ChatGPT to create Python Unittest
+# Working with FastAPI to create Python Unittest
 
 This is a simple FastAPI app that performs simple historical weather queries for Plano, TX
 
