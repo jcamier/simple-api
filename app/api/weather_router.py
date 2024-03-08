@@ -6,9 +6,9 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from sqlalchemy import func
 
-from app.models.weather_model import WeatherData, WeatherDataSchema, TemperatureForecastSchema
-from app.models.utils import kelvin_to_fahrenheit, convert_dt_iso_str
-from app.database import get_db
+from models.weather_model import WeatherData, WeatherDataSchema, TemperatureForecastSchema
+from models.utils import kelvin_to_fahrenheit, convert_dt_iso_str
+from database import get_db
 
 logger = logging.getLogger(__name__)
 
