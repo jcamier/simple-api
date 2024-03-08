@@ -14,6 +14,12 @@ To run the app, run the following command:
 
     make up
 
+To run the tests, run the following command:
+
+    make test
+
+If you want to add more tests, put them within the tests directory
+
 The app is accessible at url is:
 
     http://localhost:8080/
@@ -32,6 +38,10 @@ Learn more about FastAPI
 To browse SQLite database using a GUI tool
 
     https://sqlitebrowser.org/
+
+To learn more about Pytest
+
+    https://docs.pytest.org/en/8.0.x/
 
 Very cool weather api
 

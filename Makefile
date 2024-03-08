@@ -1,4 +1,4 @@
-.PHONY: all build up down sh test lint
+.PHONY: all build up down prune test sh
 
 all: test lint up
 
@@ -19,9 +19,6 @@ up: prune down up-service
 
 test:
 	docker-compose run --rm app pytest tests/
-
-lint:
-	docker-compose run --rm app sh -c "flake8"
 
 sh:
 	docker-compose run --rm app sh
